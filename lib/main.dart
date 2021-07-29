@@ -67,7 +67,11 @@ class MyHomePage extends StatelessWidget {
                     TextField(
                       decoration: InputDecoration(labelText: 'Amount'),
                     ),
-                    FlatButton(child: Text('Add Transaction'),(){},textColor: Colors.green,)
+                    FlatButton(
+                      child: Text('Add Transaction'),
+                      onPressed: () {},
+                      textColor: Colors.green,
+                    )
                   ],
                 ),
               )),
