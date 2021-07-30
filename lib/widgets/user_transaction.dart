@@ -58,6 +58,78 @@ class _userTransactionsState extends State<userTransactions> {
       amount: 40.01,
       date: DateTime.now(),
     ),
+    Transaction(
+      id: 't3',
+      title: 'Gym Membership',
+      amount: 40.01,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: 't3',
+      title: 'Gym Membership',
+      amount: 40.01,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: 't3',
+      title: 'Gym Membership',
+      amount: 40.01,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: 't3',
+      title: 'Gym Membership',
+      amount: 40.01,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: 't3',
+      title: 'Gym Membership',
+      amount: 40.01,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: 't3',
+      title: 'Gym Membership',
+      amount: 40.01,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: 't3',
+      title: 'Gym Membership',
+      amount: 40.01,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: 't3',
+      title: 'Gym Membership',
+      amount: 40.01,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: 't3',
+      title: 'Gym Membership',
+      amount: 40.01,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: 't3',
+      title: 'Gym Membership',
+      amount: 40.01,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: 't3',
+      title: 'Gym Membership',
+      amount: 40.01,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: 't3',
+      title: 'Gym Membership',
+      amount: 40.01,
+      date: DateTime.now(),
+    ),
   ];
   // ignore: unused_element
   void _addNewTransaction(String txTitle, double txAmount) {
