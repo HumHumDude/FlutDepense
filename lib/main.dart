@@ -1,33 +1,26 @@
-import 'dart:ui';
-
-import 'package:expense/widgets/new_transaction.dart';
+import 'package:expense/widgets/chart.dart';
 import 'package:flutter/material.dart';
 import './widgets/new_transaction.dart';
 import './widgets/transaction_list.dart';
 import './models/transaction.dart';
+import './widgets/chart.dart';
 
-void main() {
-  runApp(MyApp());
-}
+void main() => runApp(MyApp());
 
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Gestion des Depenses',
+      title: 'Personal Expenses',
       theme: ThemeData(
           primarySwatch: Colors.green,
+          accentColor: Colors.green,
           fontFamily: 'Quicksand',
           textTheme: ThemeData.light().textTheme.copyWith(
                 headline6: TextStyle(
                   fontFamily: 'OpenSans',
-                  fontSize: 20,
                   fontWeight: FontWeight.bold,
+                  fontSize: 18,
                 ),
               ),
           appBarTheme: AppBarTheme(
@@ -45,34 +38,35 @@ class _MyAppState extends State<MyApp> {
 }
 
 class MyHomePage extends StatefulWidget {
-  // late String titleInput;
-  // late String amountInput;
+  // String titleInput;
+  // String amountInput;
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final List<Transaction> _userTransaction = [
-    Transaction(
-      id: 't1',
-      title: 'New Shoes',
-      amount: 69.99,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: 't2',
-      title: 'Groceries',
-      amount: 18.22,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: 't3',
-      title: 'Gym Membership',
-      amount: 40.01,
-      date: DateTime.now(),
-    ),
+  final List<Transaction> _userTransactions = [
+    // Transaction(
+    //   id: 't1',
+    //   title: 'New Shoes',
+    //   amount: 69.99,
+    //   date: DateTime.now(),
+    // ),
+    // Transaction(
+    //   id: 't2',
+    //   title: 'Weekly Groceries',
+    //   amount: 16.53,
+    //   date: DateTime.now(),
+    // ),
   ];
-  // ignore: unused_element
+  List<Transaction> get _recentTransactions {
+    return _userTransactions.where((dx) {
+      return dx.date.isAfter(
+        DateTime.now().subtract(Duration(days: 7)),
+      );
+    }).toList();
+  }
+
   void _addNewTransaction(String txTitle, double txAmount) {
     final newTx = Transaction(
       title: txTitle,
@@ -80,15 +74,16 @@ class _MyHomePageState extends State<MyHomePage> {
       date: DateTime.now(),
       id: DateTime.now().toString(),
     );
+
     setState(() {
-      _userTransaction.add(newTx);
+      _userTransactions.add(newTx);
     });
   }
 
-  void _startAddNewTransaction(BuildContext context) {
+  void _startAddNewTransaction(BuildContext ctx) {
     showModalBottomSheet(
-      context: context,
-      builder: (bContext) {
+      context: ctx,
+      builder: (_) {
         return GestureDetector(
           onTap: () {},
           child: NewTransaction(_addNewTransaction),
@@ -102,28 +97,23 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Gestion des Depenses'),
+        title: Text(
+          'Personal Expenses',
+        ),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.add),
             onPressed: () => _startAddNewTransaction(context),
-          )
+          ),
         ],
       ),
       body: SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          // mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Container(
-              width: double.infinity,
-              child: Card(
-                color: Theme.of(context).primaryColor,
-                child: Text('Chart !'),
-                elevation: 5,
-              ),
-            ),
-            TransactionList(_userTransaction),
+            Chart(_recentTransactions),
+            TransactionList(_userTransactions),
           ],
         ),
       ),
